@@ -36,8 +36,8 @@ int main(void)
 	// Main game loop
 	al_start_timer(timer);
 	bool running = true;
-	float framebufferScale = MIN((float)al_get_display_width(display) / (float)FB_WIDTH,
-		(float)al_get_display_height(display) / (float)FB_HEIGHT);
+	float framebufferScale = MIN((float) al_get_display_width(display) / (float) FB_WIDTH,
+		(float) al_get_display_height(display) / (float) FB_HEIGHT);
 
 	while (running)
 	{
@@ -67,11 +67,10 @@ int main(void)
 			al_set_target_bitmap(al_get_backbuffer(display));
 
 			// Calculate framebuffer scale factor then render to display
-			
-			al_draw_scaled_bitmap(framebuffer, 0, 0, FB_WIDTH * framebufferScale, FB_HEIGHT * framebufferScale, 
-				(((float) al_get_display_width(display)) / 2.0f) - ((float) FB_WIDTH) / 2.0f,
-				(((float) al_get_display_height(display)) / 2.0f) - ((float) FB_HEIGHT) / 2.0f, 
-				FB_WIDTH, FB_HEIGHT, 0);
+			al_draw_scaled_bitmap(framebuffer, 0, 0, FB_WIDTH, FB_HEIGHT, 
+				(((float) al_get_display_width(display)) / 2.0f) - (((float) FB_WIDTH * framebufferScale) / 2.0f),
+				(((float) al_get_display_height(display)) / 2.0f) - (((float) FB_HEIGHT * framebufferScale) / 2.0f),
+				FB_WIDTH * framebufferScale, FB_HEIGHT * framebufferScale, 0);
 
 			al_flip_display();
 		}
