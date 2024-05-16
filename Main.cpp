@@ -16,9 +16,6 @@ int main(void)
 	ALLEGRO_TIMER* timer = al_create_timer(1.0 / FPS);
 	al_set_window_title(display, "Skii");
 
-	// Create framebuffer
-	Bitmap framebuffer = al_create_bitmap(FB_WIDTH, FB_HEIGHT);
-
 	// Install and registers event sources
 	al_install_keyboard();
 	al_install_mouse();
@@ -32,6 +29,9 @@ int main(void)
 
 	// Load bitmaps
 	al_init_image_addon();
+
+	// Create framebuffer
+	Bitmap framebuffer = al_create_bitmap(FB_WIDTH, FB_HEIGHT);
 
 	// Main game loop
 	al_start_timer(timer);
