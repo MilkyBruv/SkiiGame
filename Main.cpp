@@ -2,6 +2,7 @@
 #include <allegro5/allegro5.h>
 #include <allegro5/allegro_image.h>
 #include "Macros.h"
+#include "BitmapManager.h"
 
 int main(void)
 {
@@ -29,9 +30,7 @@ int main(void)
 
 	// Load bitmaps
 	al_init_image_addon();
-
-	// Create framebuffer
-	Bitmap framebuffer = al_create_bitmap(FB_WIDTH, FB_HEIGHT);
+	BitmapManager::loadBitmaps();
 
 	// Main game loop
 	al_start_timer(timer);
@@ -59,7 +58,7 @@ int main(void)
 			al_clear_to_color(al_map_rgb(0, 0, 0));
 			
 			// Framebuffer rendering
-			al_set_target_bitmap(framebuffer);
+			al_set_target_bitmap(BitmapManager::getBitmap(FRAMEBUFFER_BMI));
 			al_clear_to_color(al_map_rgb(0, 0, 255));
 			al_draw_pixel(0, 0, al_map_rgb(255, 255, 255));
 			al_draw_pixel(1, 1, al_map_rgb(255, 255, 255));
@@ -67,7 +66,7 @@ int main(void)
 			al_set_target_bitmap(al_get_backbuffer(display));
 
 			// Calculate framebuffer scale factor then render to display
-			al_draw_scaled_bitmap(framebuffer, 0, 0, FB_WIDTH, FB_HEIGHT, 
+			al_draw_scaled_bitmap(BitmapManager::getBitmap(FRAMEBUFFER_BMI), 0, 0, FB_WIDTH, FB_HEIGHT,
 				(((float) al_get_display_width(display)) / 2.0f) - (((float) FB_WIDTH * framebufferScale) / 2.0f),
 				(((float) al_get_display_height(display)) / 2.0f) - (((float) FB_HEIGHT * framebufferScale) / 2.0f),
 				FB_WIDTH * framebufferScale, FB_HEIGHT * framebufferScale, 0);
@@ -88,7 +87,7 @@ int main(void)
 	al_uninstall_joystick();
 	al_destroy_timer(timer);
 	al_destroy_event_queue(eventQueue);
-	al_destroy_bitmap(framebuffer);
+	BitmapManager::destroyAllBitmaps();
 
 	return 0;
 }
