@@ -1,11 +1,11 @@
 #include <allegro5/allegro5.h>
-#include "Macros.h"
+#include "../Macros.h"
 
 #pragma once
 
 class Entity
 {
-public:
+protected:
 	int x;
 	int y;
 	int width;
@@ -13,11 +13,11 @@ public:
 	int renderX;
 	int renderY;
 	Bitmap bitmap;
-	Bitmap bitmaps;
 
 	Entity();
-	const void init();
-	const void update();
-	const void render();
+	~Entity();
+	virtual void init();
+	virtual void update();
+	virtual void render();
 };
 

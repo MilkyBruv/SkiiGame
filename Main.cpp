@@ -2,7 +2,7 @@
 #include <allegro5/allegro5.h>
 #include <allegro5/allegro_image.h>
 #include "Macros.h"
-#include "BitmapManager.h"
+#include "GFX/BitmapManager.h"
 
 int main(void)
 {

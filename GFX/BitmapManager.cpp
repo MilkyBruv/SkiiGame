@@ -2,7 +2,6 @@
 #include <allegro5/allegro5.h>
 #include <allegro5/allegro_image.h>
 #include "BitmapManager.h"
-#include "Macros.h"
 
 Bitmap BitmapManager::bitmaps[TOTAL_BITMAPS];
 int BitmapManager::bitmapIndex = 0;
@@ -13,10 +12,10 @@ const void BitmapManager::loadBitmaps()
 
 	Bitmap spritesheet = al_load_bitmap("./res/image.png");
 
-	// Loop through each x,y position on first 20 images on spritesheet
+	// Loop through each x,y position on first 25 images on spritesheet
 	for (size_t i = 0; i < 5; i++)
 	{
-		for (size_t j = 0; j < 4; j++)
+		for (size_t j = 0; j < 45; j++)
 		{
 			addBitmap(al_create_sub_bitmap(spritesheet, i * 8, j * 8, 8, 8));
 		}
@@ -39,6 +38,17 @@ const void BitmapManager::addBitmap(Bitmap bitmap)
 	}
 }
 
+const void BitmapManager::addBitmap(Bitmap bitmap, const int* bmi)
+{
+	// Add new bitmap if there is space
+	if (bitmapIndex < TOTAL_BITMAPS)
+	{
+		bitmaps[bitmapIndex] = bitmap;
+		bmi = &bitmapIndex;
+		bitmapIndex++;
+	}
+}
+
 const void BitmapManager::destroyBitmap(int index)
 {
 	// If the bitmap is present, destroy it
@@ -51,6 +61,7 @@ const void BitmapManager::destroyBitmap(int index)
 
 const void BitmapManager::destroyAllBitmaps()
 {
+	// Destroy all bitmaps
 	for (size_t i = 0; i < sizeof(bitmaps) / sizeof(bitmaps[0]); i++)
 	{
 		destroyBitmap(i);
