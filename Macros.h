@@ -2,13 +2,23 @@
 
 #include <allegro5/allegro5.h>
 
+// Basic stuff
 #define Bitmap ALLEGRO_BITMAP*
 #define FB_WIDTH 160
 #define FB_HEIGHT 144
 #define TILE_WIDTH 160 / 8
 #define TILE_HEIGHT 144 / 8
 #define FPS 60
+
+// Min for framebuffer scaling
 #define MIN(a, b) (((a) < (b)) ? (a) : (b))
+
+// Player interaction keys
+#define KEY_LEFT	ALLEGRO_KEY_LEFT
+#define KEY_RIGHT	ALLEGRO_KEY_RIGHT
+#define KEY_PUSH	ALLEGRO_KEY_SPACE
+#define KEY_UP		ALLEGRO_KEY_UP
+#define KEY_DOWN	ALLEGRO_KEY_DOWN
 
 // BitmapManager indexes
 #define TOTAL_BITMAPS		32

@@ -3,6 +3,11 @@
 #include <allegro5/allegro_image.h>
 #include "Macros.h"
 #include "GFX/BitmapManager.h"
+#include "Input/InputManager.h"
+#include "Scene/Scene.h"
+
+//TODO: Server-client interaction
+//TODO: Client player bitmap pixel manipulation
 
 int main(void)
 {
@@ -20,13 +25,11 @@ int main(void)
 	// Install and registers event sources
 	al_install_keyboard();
 	al_install_mouse();
-	al_install_joystick();
 	al_register_event_source(eventQueue, al_get_keyboard_event_source());
 	al_register_event_source(eventQueue, al_get_display_event_source(display));
 	al_register_event_source(eventQueue, al_get_timer_event_source(timer));
 	al_register_event_source(eventQueue, al_get_keyboard_event_source());
 	al_register_event_source(eventQueue, al_get_mouse_event_source());
-	al_register_event_source(eventQueue, al_get_joystick_event_source());
 
 	// Load bitmaps
 	al_init_image_addon();
@@ -37,6 +40,9 @@ int main(void)
 	bool running = true;
 	float framebufferScale = MIN((float) al_get_display_width(display) / (float) FB_WIDTH,
 		(float) al_get_display_height(display) / (float) FB_HEIGHT);
+	
+	// Scene management
+	Scene* currentScene;
 
 	while (running)
 	{
@@ -49,6 +55,16 @@ int main(void)
 			al_acknowledge_resize(display);
 			framebufferScale = MIN((float) al_get_display_width(display) / (float) FB_WIDTH,
 				(float) al_get_display_height(display) / (float) FB_HEIGHT);
+		}
+
+		if (event.type == ALLEGRO_EVENT_KEY_DOWN)
+		{
+			InputManager::keyState[event.keyboard.keycode] = true;
+		}
+
+		if (event.type == ALLEGRO_EVENT_KEY_UP)
+		{
+			InputManager::keyState[event.keyboard.keycode] = false;
 		}
 
 		if (event.type == ALLEGRO_EVENT_TIMER)
@@ -88,6 +104,7 @@ int main(void)
 	al_destroy_timer(timer);
 	al_destroy_event_queue(eventQueue);
 	BitmapManager::destroyAllBitmaps();
+	free(currentScene);
 
 	return 0;
 }
