@@ -14,6 +14,7 @@ Player::~Player()
 
 void Player::init()
 {
+	this->vel = 0.0f;
 	this->x = 0;
 	this->y = 0;
 	this->width = 8;

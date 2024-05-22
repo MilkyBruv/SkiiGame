@@ -1,4 +1,5 @@
 #include "Server.h"
+#include <thread>
 
 Server::Server(char* ip, int port)
 {
@@ -8,7 +9,22 @@ Server::Server(char* ip, int port)
 	this->init();
 }
 
+Server::~Server()
+{
+	this->destroy();
+}
+
+void Server::init()
+{
+	// 
+}
+
 void Server::update()
 {
 	// 
+}
+
+void Server::destroy()
+{
+	free(this->ip);
 }

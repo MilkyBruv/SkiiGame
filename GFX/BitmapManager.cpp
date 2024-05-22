@@ -15,7 +15,7 @@ const void BitmapManager::loadBitmaps()
 	// Loop through each x,y position on first 25 images on spritesheet
 	for (size_t i = 0; i < 5; i++)
 	{
-		for (size_t j = 0; j < 45; j++)
+		for (size_t j = 0; j < 5; j++)
 		{
 			addBitmap(al_create_sub_bitmap(spritesheet, i * 8, j * 8, 8, 8));
 		}
@@ -24,8 +24,9 @@ const void BitmapManager::loadBitmaps()
 	// Destroy spritesheet bitmap after finished with it
 	al_destroy_bitmap(spritesheet);
 
-	// Add frambuffer bitmap
-	addBitmap(al_create_bitmap(FB_WIDTH, FB_HEIGHT));
+	addBitmap(al_create_bitmap(FB_WIDTH, FB_HEIGHT)); // Add frambuffer bitmap
+	addBitmap(al_load_bitmap("./res/font.png")); // Add font bitmap
+	addBitmap(al_load_bitmap("./res/title_image.png")); // Add title bitmap
 }
 
 const void BitmapManager::addBitmap(Bitmap bitmap)
@@ -34,17 +35,6 @@ const void BitmapManager::addBitmap(Bitmap bitmap)
 	if (bitmapIndex < TOTAL_BITMAPS)
 	{
 		bitmaps[bitmapIndex] = bitmap;
-		bitmapIndex++;
-	}
-}
-
-const void BitmapManager::addBitmap(Bitmap bitmap, const int* bmi)
-{
-	// Add new bitmap if there is space
-	if (bitmapIndex < TOTAL_BITMAPS)
-	{
-		bitmaps[bitmapIndex] = bitmap;
-		bmi = &bitmapIndex;
 		bitmapIndex++;
 	}
 }

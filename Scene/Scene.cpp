@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Scene.h"
 
 Scene::Scene()
@@ -7,12 +8,17 @@ Scene::Scene()
 
 void Scene::init()
 {
-	this->index = 0;
+	this->id = 0;
 }
 
-void Scene::update()
+void Scene::update(bool &running)
 {
-	// Update scene
+	// 
+}
+
+void Scene::render()
+{
+	// 
 }
 
 void Scene::destroy()

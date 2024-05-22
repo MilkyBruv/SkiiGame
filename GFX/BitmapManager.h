@@ -14,7 +14,6 @@ private:
 public:
 	const static void loadBitmaps();
 	const static void addBitmap(Bitmap bitmap);
-	const static void addBitmap(Bitmap bitmap, const int* bmi);
 	const static void destroyAllBitmaps();
 	const static void destroyBitmap(int index);
 	static Bitmap getBitmap(int index);

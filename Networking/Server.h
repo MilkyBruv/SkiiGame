@@ -2,16 +2,6 @@
 
 #include <iostream>
 
-typedef struct SendData
-{
-	// 
-} SendData;
-
-typedef struct RecieveData
-{
-	// 
-} RecieveData;
-
 class Server
 {
 public:

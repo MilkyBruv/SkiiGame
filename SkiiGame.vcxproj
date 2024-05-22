@@ -73,6 +73,9 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Allegro_AddonImage>true</Allegro_AddonImage>
     <Allegro_AddonAudio>true</Allegro_AddonAudio>
+    <Allegro_AddonTTF>true</Allegro_AddonTTF>
+    <Allegro_AddonPrimitives>true</Allegro_AddonPrimitives>
+    <Allegro_AddonFont>true</Allegro_AddonFont>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -131,12 +134,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GFX\Font.cpp" />
+    <ClCompile Include="Networking\Client.cpp" />
     <ClCompile Include="Entity\Entity.cpp" />
     <ClCompile Include="GFX\BitmapManager.cpp" />
     <ClCompile Include="Entity\EntityManager.cpp" />
     <ClCompile Include="Input\InputManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Entity\Player.cpp" />
+    <ClCompile Include="Networking\Network.cpp" />
+    <ClCompile Include="Networking\NetworkPlayer.cpp" />
     <ClCompile Include="Scene\MainMenuScene.cpp" />
     <ClCompile Include="Networking\Server.cpp" />
     <ClCompile Include="Scene\Scene.cpp" />
@@ -145,12 +152,16 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GFX\Font.h" />
+    <ClInclude Include="Networking\Client.h" />
     <ClInclude Include="GFX\BitmapManager.h" />
     <ClInclude Include="Entity\Entity.h" />
     <ClInclude Include="Entity\EntityManager.h" />
     <ClInclude Include="Input\InputManager.h" />
     <ClInclude Include="Macros.h" />
     <ClInclude Include="Entity\Player.h" />
+    <ClInclude Include="Networking\Network.h" />
+    <ClInclude Include="Networking\NetworkPlayer.h" />
     <ClInclude Include="Scene\MainMenuScene.h" />
     <ClInclude Include="Networking\Server.h" />
     <ClInclude Include="Scene\Scene.h" />

@@ -13,12 +13,13 @@
 // Min for framebuffer scaling
 #define MIN(a, b) (((a) < (b)) ? (a) : (b))
 
-// Player interaction keys
+// Common interaction keys
 #define KEY_LEFT	ALLEGRO_KEY_LEFT
 #define KEY_RIGHT	ALLEGRO_KEY_RIGHT
 #define KEY_PUSH	ALLEGRO_KEY_SPACE
 #define KEY_UP		ALLEGRO_KEY_UP
 #define KEY_DOWN	ALLEGRO_KEY_DOWN
+#define KEY_ENTER	ALLEGRO_KEY_ENTER
 
 // BitmapManager indexes
 #define TOTAL_BITMAPS		32
@@ -42,9 +43,11 @@
 #define ICE_B_BMI			17
 #define ICE_BR_BMI			18
 #define STONE_BMI			19
-#define UNDEFINED_BMI		21
-#define UNDEFINED_BMI		22
-#define UNDEFINED_BMI		23
-#define UNDEFINED_BMI		24
-#define UNDEFINED_BMI		25
-#define FRAMEBUFFER_BMI		26
+#define UNDEFINED_BMI		20
+#define UNDEFINED1_BMI		21
+#define UNDEFINED2_BMI		22
+#define UNDEFINED3_BMI		23
+#define UNDEFINED4_BMI		24
+#define FRAMEBUFFER_BMI		25
+#define FONT_BMI			26
+#define TITLE_BMI			27

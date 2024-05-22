@@ -5,9 +5,12 @@
 class Player : public Entity
 {
 public:
+	float vel;
+
 	Player();
-	void init() override;
-	void update() override;
+	~Player();
+	virtual void init() override;
+	virtual void update() override;
 	void render() override;
 };
 

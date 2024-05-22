@@ -5,6 +5,8 @@
 #include "GFX/BitmapManager.h"
 #include "Input/InputManager.h"
 #include "Scene/Scene.h"
+#include "Scene/MainMenuScene.h"
+#include "GFX/Font.h"
 
 //TODO: Server-client interaction
 //TODO: Client player bitmap pixel manipulation
@@ -35,6 +37,9 @@ int main(void)
 	al_init_image_addon();
 	BitmapManager::loadBitmaps();
 
+	// Init font
+	Font::init();
+
 	// Main game loop
 	al_start_timer(timer);
 	bool running = true;
@@ -42,7 +47,7 @@ int main(void)
 		(float) al_get_display_height(display) / (float) FB_HEIGHT);
 	
 	// Scene management
-	Scene* currentScene;
+	Scene* currentScene = new MainMenuScene();
 
 	while (running)
 	{
@@ -65,20 +70,30 @@ int main(void)
 		if (event.type == ALLEGRO_EVENT_KEY_UP)
 		{
 			InputManager::keyState[event.keyboard.keycode] = false;
+
+			if (event.keyboard.keycode == KEY_RIGHT) { InputManager::keyRightLimited = false; }
+			if (event.keyboard.keycode == KEY_LEFT) { InputManager::keyLeftLimited = false; }
+			if (event.keyboard.keycode == KEY_UP) { InputManager::keyUpLimited = false; }
+			if (event.keyboard.keycode == KEY_DOWN) { InputManager::keyDownLimited = false; }
+			if (event.keyboard.keycode == KEY_PUSH) { InputManager::keyPushLimited = false; }
+			if (event.keyboard.keycode == KEY_ENTER) { InputManager::keyEnterLimited = false; }
 		}
 
 		if (event.type == ALLEGRO_EVENT_TIMER)
 		{
+			// Updating
+			currentScene->update(running);
+
 			// Rendering
 
 			al_clear_to_color(al_map_rgb(0, 0, 0));
 			
 			// Framebuffer rendering
 			al_set_target_bitmap(BitmapManager::getBitmap(FRAMEBUFFER_BMI));
+
 			al_clear_to_color(al_map_rgb(0, 0, 255));
-			al_draw_pixel(0, 0, al_map_rgb(255, 255, 255));
-			al_draw_pixel(1, 1, al_map_rgb(255, 255, 255));
-			al_draw_pixel(2, 2, al_map_rgb(255, 255, 255));
+			currentScene->render();
+			
 			al_set_target_bitmap(al_get_backbuffer(display));
 
 			// Calculate framebuffer scale factor then render to display
@@ -96,7 +111,7 @@ int main(void)
 		}
 	}
 
-	// Destroy and uninstall everything after window is closed
+	// Destroy, uninstall, and shutdown everything after window is closed
 	al_destroy_display(display);
 	al_uninstall_keyboard();
 	al_uninstall_mouse();
@@ -104,6 +119,7 @@ int main(void)
 	al_destroy_timer(timer);
 	al_destroy_event_queue(eventQueue);
 	BitmapManager::destroyAllBitmaps();
+	al_shutdown_image_addon();
 	free(currentScene);
 
 	return 0;

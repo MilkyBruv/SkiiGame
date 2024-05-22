@@ -3,11 +3,12 @@
 class Scene
 {
 public:
-	int index;
+	int id;
 
 	Scene();
-	~Scene();
+	virtual ~Scene();
 	virtual void init();
-	virtual void update();
+	virtual void update(bool &running);
+	virtual void render();
 	virtual void destroy();
 };
