@@ -8,10 +8,10 @@ Scene::Scene()
 
 void Scene::init()
 {
-	this->id = 0;
+	// 
 }
 
-void Scene::update(bool &running)
+void Scene::update(bool &running, Scene* &currentScene)
 {
 	// 
 }

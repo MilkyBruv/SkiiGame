@@ -1,5 +1,6 @@
 #include <iostream>
 #include "MainMenuScene.h"
+#include "QuitGameScene.h"
 #include "../Input/InputManager.h"
 #include "../Macros.h"
 #include "../GFX/Font.h"
@@ -17,11 +18,10 @@ MainMenuScene::~MainMenuScene()
 
 void MainMenuScene::init()
 {
-	this->id = 0;
 	this->cursorIndex = 0;
 }
 
-void MainMenuScene::update(bool &running)
+void MainMenuScene::update(bool &running, Scene* &currentScene)
 {
 	if (InputManager::isKeyDown(KEY_UP) && !InputManager::keyUpLimited)
 	{
@@ -37,7 +37,9 @@ void MainMenuScene::update(bool &running)
 	if (InputManager::isKeyDown(KEY_ENTER) && !InputManager::keyEnterLimited)
 	{
 		if (this->cursorIndex == 0) { std::cout << "start game" << std::endl; }
-		else if (this->cursorIndex == 1) { running = false; }
+		else if (this->cursorIndex == 1) { 
+			currentScene = new QuitGameScene();
+		}
 	}
 }
 

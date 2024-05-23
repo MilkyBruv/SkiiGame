@@ -82,7 +82,7 @@ int main(void)
 		if (event.type == ALLEGRO_EVENT_TIMER)
 		{
 			// Updating
-			currentScene->update(running);
+			currentScene->update(running, currentScene);
 
 			// Rendering
 
@@ -120,7 +120,6 @@ int main(void)
 	al_destroy_event_queue(eventQueue);
 	BitmapManager::destroyAllBitmaps();
 	al_shutdown_image_addon();
-	free(currentScene);
 
 	return 0;
 }
