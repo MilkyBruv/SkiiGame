@@ -4,7 +4,6 @@
 #include "BitmapManager.h"
 
 std::map<char, Bitmap> Font::fontMap;
-Bitmap Font::tempBitmap;
 
 void Font::init()
 {
@@ -19,23 +18,10 @@ void Font::init()
 	}
 }
 
-Bitmap Font::getTextBitmap(const char* text)
+void Font::renderText(const char* text, int x, int y)
 {
-	// Get original target bitmap to reset back to after creating text bitmap
-	Bitmap tempTargetBitmap = al_get_target_bitmap();
-
-	// Create temporary bitmap and render text into it from map
-
-	tempBitmap = al_create_bitmap(strlen(text) * 8, 8);
-	al_set_target_bitmap(tempBitmap);
-	
 	for (size_t i = 0; i < strlen(text); i++)
 	{
-		al_draw_bitmap(fontMap[text[i]], i * 8, 0, 0);
+		al_draw_bitmap(fontMap[text[i]], x + (i * 8), y, 0);
 	}
-
-	// Reset target bitmap
-	al_set_target_bitmap(tempTargetBitmap);
-
-	return tempBitmap;
 }

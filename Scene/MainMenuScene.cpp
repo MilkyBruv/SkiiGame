@@ -1,6 +1,7 @@
 #include <iostream>
 #include "MainMenuScene.h"
 #include "QuitGameScene.h"
+#include "OfflineMenuScene.h"
 #include "../Input/InputManager.h"
 #include "../Macros.h"
 #include "../GFX/Font.h"
@@ -25,40 +26,47 @@ void MainMenuScene::update(bool &running, Scene* &currentScene)
 {
 	if (InputManager::isKeyDown(KEY_UP) && !InputManager::keyUpLimited)
 	{
-		this->cursorIndex = this->cursorIndex == 0 ? 1 : 0;
+		this->cursorIndex = this->cursorIndex == 0 ? 2 : this->cursorIndex - 1;
 		InputManager::keyUpLimited = true;
 
 	} if (InputManager::isKeyDown(KEY_DOWN) && !InputManager::keyDownLimited)
 	{
-		this->cursorIndex = this->cursorIndex == 0 ? 1 : 0;
+		this->cursorIndex = this->cursorIndex == 2 ? 0 : this->cursorIndex + 1;
 		InputManager::keyDownLimited = true;
 	}
 
 	if (InputManager::isKeyDown(KEY_ENTER) && !InputManager::keyEnterLimited)
 	{
-		if (this->cursorIndex == 0) { std::cout << "start game" << std::endl; }
-		else if (this->cursorIndex == 1) { 
-			currentScene = new QuitGameScene();
-		}
+		if (this->cursorIndex == 0) { currentScene = new OfflineMenuScene(); }
+		if (this->cursorIndex == 1) { std::cout << "start game online" << std::endl; }
+		if (this->cursorIndex == 2) { currentScene = new QuitGameScene(); }
 	}
 }
 
 void MainMenuScene::render()
 {
-	al_draw_bitmap(Font::getTextBitmap("skii"), 16, 8, 0);
-	al_draw_bitmap(BitmapManager::getBitmap(TITLE_BMI), 100, 8, 0);
-	al_draw_bitmap(Font::getTextBitmap("copyright"), 8, 144 - 24, 0);
-	al_draw_bitmap(Font::getTextBitmap(" milkybruv 2024"), 8, 144 - 16, 0);
+	Font::renderText("skii", 16, 8);
+	// BitmapManager::renderBitmap(TITLE_BMI, 100, 8);
+	Font::renderText("copyright", 8, 144 - 24);
+	Font::renderText("milkybruv 2024", 16, 144 - 16);
 
 	if (this->cursorIndex == 0)
 	{
-		al_draw_bitmap(Font::getTextBitmap(">play<"), 8, 32, 0);
-		al_draw_bitmap(Font::getTextBitmap(" quit"), 8, 48, 0);
+		Font::renderText(">offline<", 8, 32);
+		Font::renderText("online", 16, 48);
+		Font::renderText("quit", 16, 64);
 	
 	} if (this->cursorIndex == 1)
 	{
-		al_draw_bitmap(Font::getTextBitmap(" play"), 8, 32, 0);
-		al_draw_bitmap(Font::getTextBitmap(">quit<"), 8, 48, 0);
+		Font::renderText("offline", 16, 32);
+		Font::renderText(">online<", 8, 48);
+		Font::renderText("quit", 16, 64);
+
+	} if (this->cursorIndex == 2)
+	{
+		Font::renderText("offline", 16, 32);
+		Font::renderText("online", 16, 48);
+		Font::renderText(">quit<", 8, 64);
 	}
 }
 

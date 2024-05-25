@@ -2,6 +2,7 @@
 #include <allegro5/allegro5.h>
 #include <allegro5/allegro_image.h>
 #include "BitmapManager.h"
+#include "Font.h"
 
 Bitmap BitmapManager::bitmaps[TOTAL_BITMAPS];
 int BitmapManager::bitmapIndex = 0;
@@ -55,6 +56,14 @@ const void BitmapManager::destroyAllBitmaps()
 	for (size_t i = 0; i < sizeof(bitmaps) / sizeof(bitmaps[0]); i++)
 	{
 		destroyBitmap(i);
+	}
+}
+
+const void BitmapManager::renderBitmap(int index, int x, int y)
+{
+	if (getBitmap(index) != NULL)
+	{
+		al_draw_bitmap(getBitmap(index), x, y, 0);
 	}
 }
 

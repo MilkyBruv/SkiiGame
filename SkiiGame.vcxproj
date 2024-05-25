@@ -144,7 +144,7 @@
     <ClCompile Include="Entity\Player.cpp" />
     <ClCompile Include="Networking\Network.cpp" />
     <ClCompile Include="Networking\NetworkPlayer.cpp" />
-    <ClCompile Include="Scene\PlayScene.cpp" />
+    <ClCompile Include="Scene\OfflineMenuScene.cpp" />
     <ClCompile Include="Scene\QuitGameScene.cpp" />
     <ClCompile Include="Scene\MainMenuScene.cpp" />
     <ClCompile Include="Networking\Server.cpp" />
@@ -164,7 +164,7 @@
     <ClInclude Include="Entity\Player.h" />
     <ClInclude Include="Networking\Network.h" />
     <ClInclude Include="Networking\NetworkPlayer.h" />
-    <ClInclude Include="Scene\PlayScene.h" />
+    <ClInclude Include="Scene\OfflineMenuScene.h" />
     <ClInclude Include="Scene\QuitGameScene.h" />
     <ClInclude Include="Scene\MainMenuScene.h" />
     <ClInclude Include="Networking\Server.h" />

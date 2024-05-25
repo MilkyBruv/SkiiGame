@@ -57,7 +57,7 @@
     <ClCompile Include="Scene\QuitGameScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\PlayScene.cpp">
+    <ClCompile Include="Scene\OfflineMenuScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -107,7 +107,7 @@
     <ClInclude Include="Scene\QuitGameScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\PlayScene.h">
+    <ClInclude Include="Scene\OfflineMenuScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

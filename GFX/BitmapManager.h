@@ -16,5 +16,6 @@ public:
 	const static void addBitmap(Bitmap bitmap);
 	const static void destroyAllBitmaps();
 	const static void destroyBitmap(int index);
+	const static void renderBitmap(int index, int x, int y);
 	static Bitmap getBitmap(int index);
 };

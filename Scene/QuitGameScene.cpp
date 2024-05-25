@@ -27,7 +27,7 @@ void QuitGameScene::update(bool& running, Scene* &currentScene)
 
 void QuitGameScene::render()
 {
-	al_draw_bitmap(Font::getTextBitmap("saving"), 8, 8, 0);
+	Font::renderText("saving", 8, 8);
 }
 
 void QuitGameScene::destroy()

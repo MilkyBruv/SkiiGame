@@ -8,9 +8,11 @@ class Font
 public:
 	// Map of char* to character Bitmap
 	static std::map<char, Bitmap> fontMap;
-	static Bitmap tempBitmap;
 
 	static void init();
-	static Bitmap getTextBitmap(const char* text);
+	static void renderText(const char* text, int x, int y);
+
+private:
+	static void addTextBitmap(const char* text);
 };
 

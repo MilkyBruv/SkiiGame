@@ -37,7 +37,7 @@ int main(void)
 	al_init_image_addon();
 	BitmapManager::loadBitmaps();
 
-	// Init font
+	// Init custom font renderer
 	Font::init();
 
 	// Main game loop

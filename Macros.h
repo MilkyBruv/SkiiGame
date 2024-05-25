@@ -51,3 +51,4 @@
 #define FRAMEBUFFER_BMI		25
 #define FONT_BMI			26
 #define TITLE_BMI			27
+#define OFFLINE_BMI			28
